@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/js/modernizr.js"></script>
+
+    <link rel="stylesheet" href="/static/css/style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    {{>header}}
+
+    <h5 style="color: red; justify-content: center; display: flex; font-size: 2rem;">Only 20 Min Allow to Post Your Blog on this website after You going to Log Out</h5>
+    <div class="container">
+        <form action="/user/postBlog" method="post">
+            <div class="title">Bloging</div>
+            <span class="details">Title</span>
+            <div class="underline textarea_input">
+                {{!-- <input type="text" placeholder="Enter Your Title of Blog" name="title" class="title" id="title" required> --}}
+                <textarea name="title" id="title"  cols="30" rows="10"></textarea>
+                <div class="underline"></div>
+            </div>
+            <span class="details">Context</span>
+            <div class="underline textarea_input">
+                {{!-- <input type="textarea" placeholder="Enter Your context of Blog" name="context" class="context" id="context" required> --}}
+                <textarea name="context" id="context" class="context" cols="30" rows="10"></textarea>
+                <div class="underline"></div>
+            </div>
+            <br>
+            <button type="submit">Post your blog</button>
+        </form>
+    </div>
+    {{>footer}}
+
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>
