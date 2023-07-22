@@ -1,5 +1,4 @@
 require('dotenv').config()
-const { trusted } = require("mongoose");
 const mongoose = require("mongoose")
 
 

@@ -60,4 +60,4 @@ mongoose.connect(process.env.SERVER_DB_KEY,{
 let port = process.env.APP_PORT || 8080;
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
-  })
+})
