@@ -46,7 +46,15 @@ app.use('/api',auth);
 
 // connect to mongoose
 // mongodb://localhost:27017
-mongoose.connect(process.env.SERVER_DB_KEY,{
+// mongoose.connect(process.env.SERVER_DB_KEY,()=>{
+//     console.log("db is great");
+// })
+
+// let dbURL = "mongodb://localhost:27017/bloging";
+try{
+let dbURL = process.env.SERVER_DB_KEY;  
+
+mongoose.connect(dbURL,{
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(()=>{
@@ -54,6 +62,10 @@ mongoose.connect(process.env.SERVER_DB_KEY,{
 }).catch((err)=>{
     console.log(err);
 })
+}
+catch(err){
+    console.log(err);
+}
 
 
 

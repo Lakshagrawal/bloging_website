@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "helloServer": "nodemon src/serverdb.js -e hbs,js,json",
-    "start": "nodemon src/app.js -e hbs,js,json"
+    "start": "nodemon ./src/app.js -e hbs,js,json"
   },
   "author": "Lakshya Agrawal",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "mongoose": "^7.3.4",
     "node": "^20.4.0",
     "nodemon": "^3.0.1",
-    "parse-bytes": "^0.0.2"
+    "parse-bytes": "^0.0.2",
+    "pm2": "^5.3.0"
   }
 }
