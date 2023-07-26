@@ -21,20 +21,23 @@ router.use(bodyParser.urlencoded({
 // --->  /user
 
 router.get("/", async(req,res)=>{
-    // **********/////////**************
-    // frontend copy to 
-    // https://styleshout.com/demo/?theme=keepitsimple
     let widget = await widgetText.findOne();
     res.render('login',{text:widget});
 })
+
+
 router.get("/registration", async(req,res)=>{
     let widget = await widgetText.findOne();
     res.render("signup",{text:widget});
 })
+
+
 router.get("/postyourblog",verifying, async(req,res)=>{
     let widget = await widgetText.findOne();
     res.render("blog",{text:widget})
 })
+
+
 router.get("/logOut",async(req,res)=>{
      res.clearCookie("jwtoken");
      res.redirect('/user');
@@ -49,7 +52,8 @@ router.post("/VerifySignup",async(req,res)=>{
         res.redirect("/user/registration")
     }
     else{
-        let url = "http://localhost:8080/api/signUp";
+        const port = process.env.APP_PORT || 3000;
+        let url = `http://localhost:${port}/api/signUp`;
         try{
 
             let apiVerify = await fetch(url,{
@@ -92,16 +96,17 @@ router.post("/verifyLogin",async(req,res)=>{
     // console.log("login-in");
     // console.log(req.body);
 
-    let url = "http://localhost:8080/api/signIn";
+    // let url = "http://localhost:3000/api/signIn";
+    const port = process.env.APP_PORT || 3000;
+    const url = `http://localhost:${port}/api/signIn`;
 
-    
     let {user,pass} = req.body;
 
     if(!user || !pass){
         res.redirect("/user")
     }
     else{
-        let apiVerify = await fetch(url,{
+        const apiVerify = await fetch(url,{
             method:"POST",
             headers: {
                 "Content-Type": "application/json",
@@ -114,8 +119,10 @@ router.post("/verifyLogin",async(req,res)=>{
         // console.log(vall);
 
         let statusCode = apiVerify.status;
-        if(statusCode===200){
+
+        if(statusCode === 200){
             const token = vall.message;
+            // console.log(token);
             res.cookie("jwtoken",token,{
                 expires :new Date(Date.now()+1260000),
                 httpOnly:true,
@@ -169,7 +176,7 @@ router.post("/postBlog",async(req,res)=>{
             req.body.sr = n + 1;
             req.body.date = await new Date().toJSON();;
             req.body.user = user.name;
-            // console.log(req.body);
+            console.log(req.body);
             blog.create(req.body);
             
             res.write("<h1>Success in Blog Creation, Blog have been Save in the database</h1>")

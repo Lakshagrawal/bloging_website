@@ -76,28 +76,28 @@ router.post("/signIn",async(req,res)=>{
     const {user,pass} =  req.body;
     
     // console.log(req.body);
-    let usersdb = await newUser.findOne({user:user});
+
+    const usersdb = await newUser.findOne({user:user});
 
     if(!usersdb){
-        return res.status(404).json({error : "Please Enter Correct User and Password",
-    server: "ok"});
+        return res.status(404).json({error : "Please Enter Correct User and Password", "server": "ok"});
+    }
+    if(usersdb.admin === 0){
+        // not verify by the admin
+        return res.status(302).json({message:"Please Verify your admin credibility from ADMIN"});
     }
 
     const isMatch = await bcrypt.compare(pass,usersdb.pass);
-
+    // console.log("hello my &****");
+    
     if(isMatch){
         const token = await usersdb.generateAuthToken();
         // console.log(token);
-        res.status(200).json({message:token})
+        return res.status(200).json({message:token})
     }
-
-    if(!isMatch){
+    else{
         // Incorect user and password
-        res.status(400).json({error:"Invalid Crediantial" , server: "ok"});
-    }
-    else if(usersdb.admin === 0){
-        // not verify by the admin
-        res.status(302).json({message:"Please Verify your admin credibility from ADMIN"});
+        return res.status(400).json({error:"Invalid Crediantial" , server: "ok"});
     }
 })
 

@@ -7,10 +7,12 @@ const widgetText= require("../models/widgetText");
 router.get('/',async(req,res)=>{
     const arr = await blogs.find();
     let n = arr.length;
+    // console.log(arr);
     for(let i=0;i<n;i++){
         let s = "";
-
-        for(let j=0;j<500;j++){
+        let m = arr[i].context.length;
+        // console.log(m);
+        for(let j=0;j<Math.min(m,500);j++){
             s += arr[i].context[j];
         }
         
