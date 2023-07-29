@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="UTF-8">
+  <title> Login Page </title>
+  <script src="/static/js/modernizr.js"></script>
+
+  <link rel="stylesheet" href="/static/css/style1.css">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- mobile specific metas
+  ================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSS
+  ================================================== -->
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/main.css">
+
+  <!-- script
+  ================================================== -->
+  <script src="/static/js/modernizr.js"></script>
+  <script defer src="/static/js/fontawesome/all.min.js"></script>
+ 
+ 
+ </head>
+
+<body id="top">
+
+  <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader" class="dots-fade">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- Header
+    ================================================== -->
+    <header class="s-header">
+
+        <div class="row">
+
+            <div class="s-header__content column">
+                <h1 class="s-header__logotext">
+                    <a href="index.html" title="">Bloging makes you knowlagable</a>
+                </h1>
+                <p class="s-header__tagline">Put your awesome tagline here.</p>
+            </div>
+
+        </div> <!-- end row -->
+
+       <nav class="s-header__nav-wrap">
+
+           <div class="row">
+
+               <ul class="s-header__nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/user/postyourblog">Post Blog</a></li>	
+                    <li class="current"><a href="/user">Log In</a></li>
+                    <li><a href="/user/registration">Sign In</a></li>
+                    <li><a href="/user/logOut">Log Out</a></li>
+                    
+                </ul> <!-- end #nav -->
+           </div> 
+
+        </nav> <!-- end #nav-wrap -->
+
+        <a class="header-menu-toggle" href="#0" title="Menu"><span>Menu</span></a>
+
+    </header> <!-- Header End -->
+
+
+
+
+    
+    {{#each data}}
+    <div class="center_all_val ">
+        <article class="entry fullopenblog">
+
+            <header class="entry__header">
+
+                <h2 class="entry__title h1">
+                    {{this.title}}
+                </h2>
+
+                <div class="entry__meta">
+                    <ul>
+                        <li>{{calculate_date_hbs this.date}}</li>
+                        <li><a href="#" title="" rel="category tag">Public</a></li>
+                        <li>{{this.user}}</li>
+                    </ul>
+                </div>
+
+            </header>
+
+            <div class="entry__content">
+                <p>
+                    {{this.context}}
+                </p>
+            </div>
+        </article> <!-- end entry -->
+    </div> <!-- end main -->
+        {{/each}}
+
+
+  
+  {{>footer}}
+  <script src="/static/js/jquery-3.2.1.min.js"></script>
+  <script src="/static/js/main.js"></script>
+</body>
+
+</html>

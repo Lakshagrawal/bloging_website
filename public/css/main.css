@@ -2605,3 +2605,19 @@ button::-moz-focus-inner, input::-moz-focus-inner {
         border-left: none;
     }
 }
+
+
+.fullopenblog{
+    background: #fff;
+    width: 80%;
+    margin: 7rem;
+    padding: 25px 30px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgb(3 3 3 / 15%);
+}
+.center_all_val{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
