@@ -180,7 +180,7 @@ router.post("/postBlog",async(req,res)=>{
             blog.create(req.body);
             
             res.write("<h1>Success in Blog Creation, Blog have been Save in the database</h1>")
-            res.write('<a href="/user/postBlog">New Blog</a> <br> <br>')
+            res.write('<a href="/user/postyourblog">New Blog</a> <br> <br>')
             res.write('<a href="/">See Your blog</a>')
             res.send();
         }

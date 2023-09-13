@@ -38,7 +38,7 @@ router.post('/signUp',async(req,res,next)=>{
         }
         else{
             // dublicate is not allow
-            req.body.admin = 0;
+            req.body.admin = 1;
             req.body.date = await new Date().toJSON();
             const salt= await bcrypt.genSalt();
             let hashPass = await bcrypt.hash(pass,salt);
@@ -55,9 +55,7 @@ router.post('/signUp',async(req,res,next)=>{
 
             // const token = await newUserId.generateAuthToken();
 
-
             // console.log("the given token is :***  "+token);
-            
             
             newUser.create(req.body);
             return res.status(200).json({message:"Success in user creation, take time to verify it by the admin"});
