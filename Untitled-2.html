@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <!-- Created By CodingLab - www.codinglabweb.com -->
-<html lang="en" dir="ltr">
+<html lang="en" class="no-js">
 
 <head>
   <meta charset="UTF-8">
-  <title>Registration</title>
+  <title> Login Page </title>
+  <script src="/static/js/modernizr.js"></script>
 
   <link rel="stylesheet" href="/static/css/style1.css">
   <meta name="description" content="">
@@ -24,10 +25,10 @@
   <script src="/static/js/modernizr.js"></script>
   <script defer src="/static/js/fontawesome/all.min.js"></script>
  
-</head>
+ 
+ </head>
 
 <body id="top">
-
 
   <!-- preloader
     ================================================== -->
@@ -47,9 +48,9 @@
 
             <div class="s-header__content column">
                 <h1 class="s-header__logotext">
-                    <a href="index.html" title="" style="font-size: 6.2rem;  font-family: Georgia, serif;">Discover Insights: Explore Blogs!</a>
+                    <a href="index.html" title="">Bloging makes you knowlagable</a>
                 </h1>
-                <p class="s-header__tagline">Fuel Your Curiosity: Discover Fascinating Stories in Our Blogging Universe!</p>
+                <p class="s-header__tagline">Put your awesome tagline here.</p>
             </div>
 
         </div> <!-- end row -->
@@ -61,8 +62,8 @@
                <ul class="s-header__nav">
                     <li><a href="/">Home</a></li>
                     <li><a href="/user/postyourblog">Post Blog</a></li>	
-                    <li><a href="/user">Log In</a></li>
-                    <li class="current"><a href="/user/registration">Sign In</a></li>
+                    <li class="current"><a href="/user">Log In</a></li>
+                    <li><a href="/user/registration">Sign In</a></li>
                     <li><a href="/user/logOut">Log Out</a></li>
                     
                 </ul> <!-- end #nav -->
@@ -75,46 +76,32 @@
     </header> <!-- Header End -->
 
 
+
+
+    
   <div class="container">
-    <form action="/user/VerifySignup" method="post">
-      <div class="title">Registration</div>
-      <span class="details">Full Name</span>
+    <form action="/user/verifyLogin" method="post">
+      <div class="title">Login</div>
+      <span class="details">User Name</span>
       <div class="input-box underline">
-        <input type="text" placeholder="Enter your name" name="name" required>
+        <input type="text" placeholder="Enter Your User Id" name="user" class="user" id="user" required>
         <div class="underline"></div>
-      </div>
-      <span class="details">Username</span>
-      <div class="input-box">
-        <input type="text" placeholder="Enter your username" name="user" id="user" required>
-        <div class="underline"></div>
-      </div>
-      <span class="details">Email</span>
-      <div class="input-box">
-        <input type="text" placeholder="Enter your email" name="email" id="email" required>
-      <div class="underline"></div>
       </div>
       <span class="details">Password</span>
       <div class="input-box">
-        <input type="text" placeholder="Enter your password" name="pass" id="pass" required>
-      <div class="underline"></div>
-      </div>
-      <span class="details">Confirm Password</span>
-      <div class="input-box">
-        <input type="text" placeholder="Confirm your password" name="cpass" id="cpass" required>
-      <div class="underline"></div>
+        <input type="password" placeholder="Enter Your Password" name="pass" id="pass" class="pass" required>
+        <div class="underline"></div>
       </div>
       <div class="input-box button">
         <input type="submit" name="" value="Continue">
       </div>
-      {{!-- <div>
-        <p style="color: red; justify-content: center; display: flex; font-size: 1.2rem;">After registration contact to admin to verify
-          your permission</p>
-      </div> --}}
     </form>
   </div>
-{{>footer}}
 
-<script src="/static/js/jquery-3.2.1.min.js"></script>
+
+  
+  {{>footer}}
+  <script src="/static/js/jquery-3.2.1.min.js"></script>
   <script src="/static/js/main.js"></script>
 </body>
 

@@ -5,6 +5,8 @@ const newUser = require('../models/newUser');
 const cookieParser = require("cookie-parser")
 const verifying = require("../middleware/verifying")
 const jwt = require("jsonwebtoken");
+const widgetText= require("../models/widgetText");
+
 
 // use of json file in the router or || app file 
 router.use(express.json());
@@ -18,18 +20,24 @@ router.use(bodyParser.urlencoded({
 
 // --->  /user
 
-router.get("/",(req,res)=>{
-    // **********/////////**************
-    // frontend copy to 
-    // https://styleshout.com/demo/?theme=keepitsimple
-    res.render('login');
+router.get("/", async(req,res)=>{
+    let widget = await widgetText.findOne();
+    res.render('login',{text:widget});
 })
-router.get("/registration",(req,res)=>{
-    res.render("signup");
+
+
+router.get("/registration", async(req,res)=>{
+    let widget = await widgetText.findOne();
+    res.render("signup",{text:widget});
 })
-router.get("/postyourblog",verifying,(req,res)=>{
-    res.render("blog")
+
+
+router.get("/postyourblog",verifying, async(req,res)=>{
+    let widget = await widgetText.findOne();
+    res.render("blog",{text:widget})
 })
+
+
 router.get("/logOut",async(req,res)=>{
      res.clearCookie("jwtoken");
      res.redirect('/user');
@@ -44,7 +52,8 @@ router.post("/VerifySignup",async(req,res)=>{
         res.redirect("/user/registration")
     }
     else{
-        let url = "http://localhost:8080/api/signUp";
+        const port = process.env.APP_PORT || 3000;
+        let url = `http://localhost:${port}/api/signUp`;
         try{
 
             let apiVerify = await fetch(url,{
@@ -70,20 +79,6 @@ router.post("/VerifySignup",async(req,res)=>{
             else{
                 res.send(vall);
             }
-
-            // if(statusCode === 409){
-            //     res.send("There is same // User or Email // is available please choice different User name")
-            // }
-            // else if(statusCode === 200){  
-            //     console.log("success in user creation, take time to verify it by the admin");
-            //     res.render("login");
-            // }
-            // else if(statusCode === 500){
-            //     res.send("Internal Server Error, Contact to the developer");
-            // }
-            // else{
-            //     res.redirect("/user/registration")
-            // }
         }
         catch(err){
             console.log(err);
@@ -101,16 +96,17 @@ router.post("/verifyLogin",async(req,res)=>{
     // console.log("login-in");
     // console.log(req.body);
 
-    let url = "http://localhost:8080/api/signIn";
+    // let url = "http://localhost:3000/api/signIn";
+    const port = process.env.APP_PORT || 3000;
+    const url = `http://localhost:${port}/api/signIn`;
 
-    
     let {user,pass} = req.body;
 
     if(!user || !pass){
         res.redirect("/user")
     }
     else{
-        let apiVerify = await fetch(url,{
+        const apiVerify = await fetch(url,{
             method:"POST",
             headers: {
                 "Content-Type": "application/json",
@@ -123,39 +119,22 @@ router.post("/verifyLogin",async(req,res)=>{
         // console.log(vall);
 
         let statusCode = apiVerify.status;
-        if(statusCode===200){
+
+        if(statusCode === 200){
             const token = vall.message;
+            // console.log(token);
             res.cookie("jwtoken",token,{
                 expires :new Date(Date.now()+1260000),
                 httpOnly:true,
                 // //secure is use in the production 
                 // secure:true 
             });
-            res.render('blog');
+            let widget = await widgetText.findOne();
+            res.render('blog',{text:widget});
         }
         else{
             res.send(vall);
         }
-        // if(statusCode === 404){
-        //     res.send('Enter valid email and password');
-        //     // res.render("login");
-        // }
-        // else if(statusCode === 400){
-        //     // Incorect user and password
-        //     res.send('Invalid email and password');
-        //     // res.render("login");
-        // }
-        // else if(statusCode === 302){
-        //     // alert("Not verify by the admin, First verify to post your request");
-        //     res.send("Not verify by the admin");
-        //     // res.render("login");
-        // }
-        // else if(statusCode===200){
-        //     res.render('admin');
-        // }
-        // else{
-        //     res.render("login");
-        // }
     }
     
     
@@ -197,11 +176,11 @@ router.post("/postBlog",async(req,res)=>{
             req.body.sr = n + 1;
             req.body.date = await new Date().toJSON();;
             req.body.user = user.name;
-            // console.log(req.body);
+            console.log(req.body);
             blog.create(req.body);
             
             res.write("<h1>Success in Blog Creation, Blog have been Save in the database</h1>")
-            res.write('<a href="/user/postBlog">New Blog</a> <br> <br>')
+            res.write('<a href="/user/postyourblog">New Blog</a> <br> <br>')
             res.write('<a href="/">See Your blog</a>')
             res.send();
         }

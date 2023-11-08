@@ -45,19 +45,33 @@ app.use('/api',auth);
 
 
 // connect to mongoose
-// mongodb://localhost:27017
-mongoose.connect(process.env.SERVER_DB_KEY,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(()=>{
+// let dbURL = "mongodb://127.0.0.1:27017/website_tut";
+// mongoose.connect(dbURL,()=>{
+//     console.log("db connect hello my friends ");   
+// })
+// let dbURL = "mongodb://localhost:27017/bloging";
+try{
+const dbURL = process.env.SERVER_DB_KEY;  
+console.log(dbURL);
+// const connectionParams = { 
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// };
+
+mongoose.connect(dbURL).then(()=>{
     console.log("db is connected succsesfully");
 }).catch((err)=>{
     console.log(err);
 })
+}
+
+catch(err){
+    console.log(err);
+}
 
 
 
-let port = process.env.APP_PORT || 8080;
+let port = process.env.APP_PORT || 3000;
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
-  })
+})

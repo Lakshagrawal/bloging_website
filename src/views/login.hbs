@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Created By CodingLab - www.codinglabweb.com -->
-<html lang="en" dir="ltr">
+<html lang="en" class="no-js">
 
 <head>
   <meta charset="UTF-8">
@@ -8,15 +8,72 @@
   <script src="/static/js/modernizr.js"></script>
 
   <link rel="stylesheet" href="/static/css/style1.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- mobile specific metas
+  ================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSS
+  ================================================== -->
   <link rel="stylesheet" href="/static/css/base.css">
   <link rel="stylesheet" href="/static/css/main.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
 
-<body>
-  {{>header}}
+  <!-- script
+  ================================================== -->
+  <script src="/static/js/modernizr.js"></script>
+  <script defer src="/static/js/fontawesome/all.min.js"></script>
+ 
+ 
+ </head>
+
+<body id="top">
+
+  <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader" class="dots-fade">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- Header
+    ================================================== -->
+    <header class="s-header">
+
+        <div class="row">
+
+            <div class="s-header__content column">
+                <h1 class="s-header__logotext">
+                    <a href="index.html" title="" style="font-size: 6.2rem;  font-family: Georgia, serif;">Discover Insights: Explore Blogs!</a>
+                </h1>
+                <p class="s-header__tagline">Fuel Your Curiosity: Discover Fascinating Stories in Our Blogging Universe!</p>
+            </div>
+
+        </div> <!-- end row -->
+
+       <nav class="s-header__nav-wrap">
+
+           <div class="row">
+
+               <ul class="s-header__nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/user/postyourblog">Post Blog</a></li>	
+                    <li class="current"><a href="/user">Log In</a></li>
+                    <li><a href="/user/registration">Sign In</a></li>
+                    <li><a href="/user/logOut">Log Out</a></li>
+                    
+                </ul> <!-- end #nav -->
+           </div> 
+
+        </nav> <!-- end #nav-wrap -->
+
+        <a class="header-menu-toggle" href="#0" title="Menu"><span>Menu</span></a>
+
+    </header> <!-- Header End -->
 
   <div class="container">
     <form action="/user/verifyLogin" method="post">
@@ -36,6 +93,9 @@
       </div>
     </form>
   </div>
+
+
+  
   {{>footer}}
   <script src="/static/js/jquery-3.2.1.min.js"></script>
   <script src="/static/js/main.js"></script>

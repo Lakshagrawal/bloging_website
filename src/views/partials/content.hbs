@@ -4,12 +4,13 @@
 
         <div id="main" class="s-content__main large-8 column">
             {{#each data}}
-            <article class="entry">
+        {{!-- <div class="border_shadow"> --}}
+            <article class="entry border_shadow">
 
                 <header class="entry__header">
 
                     <h2 class="entry__title h1">
-                        <a href="single.html" title="">{{this.title}}</a>
+                        {{this.title}}
                     </h2>
 
                     <div class="entry__meta">
@@ -24,7 +25,7 @@
 
                 <div class="entry__content">
                     <p>
-                        {{this.context}}
+                        {{this.context}}....
                         {{!-- Duis ex ad cupidatat tempor Excepteur cillum cupidatat fugiat nostrud cupidatat dolor sunt sint
                         sit nisi
                         est eu exercitation incididunt adipisicing veniam velit id fugiat enim mollit amet anim veniam
@@ -38,12 +39,12 @@
                         adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed. --}}
                     </p>
                 </div>
-
+                <a href="/fullBlog/{{this.id}}">read more..</a>
             </article> <!-- end entry -->
+        {{!-- </div> <!-- end main --> --}}
             {{/each}}
-        </div> <!-- end main -->
 
-
+    </div>
         <div id="sidebar" class="s-content__sidebar large-4 column">
 
             {{!-- <div class="widget widget--search">
@@ -69,12 +70,10 @@
             </div> --}}
 
             <div class="widget widget_text group">
-                <h3 class="h6">Widget Text.</h3>
+                {{!-- <h3 class="h6">Widget Text.</h3> --}}
 
                 <p>
-                    Lorem ipsum Ullamco commodo laboris sit dolore commodo aliquip incididunt fugiat esse dolor
-                    aute fugiat minim eiusmod do velit labore fugiat officia ad sit culpa labore in consectetur
-                    sint cillum sint consectetur voluptate adipisicing Duis irure magna ut sit amet reprehenderit.
+                    {{text.widgettext}}
                 </p>
             </div>
 
@@ -82,13 +81,13 @@
                 <h3 class="h6">Post Tags.</h3>
 
                 <div class="tagcloud group">
-                    <a href="#0">Blog</a>
-                    <a href="#0">Log In</a>
-                    <a href="#0">Sign Up</a>
+                    <a href="/">Blog</a>
+                    <a href="/user">Log In</a>
+                    <a href="/user/registration">Sign Up</a>
                     {{!-- <a href="#0">Agency</a> --}}
-                    <a href="#0">Post Your Blog</a>
+                    <a href="/user/postyourblog">Post Your Blog</a>
                     {{!-- <a href="#0">Landing Page</a> --}}
-                    <a href="#0">Resume</a>
+                    {{!-- <a href="#0">Resume</a> --}}
                 </div>
             </div>
 
