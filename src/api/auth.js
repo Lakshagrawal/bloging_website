@@ -45,20 +45,6 @@ router.post('/signUp',async(req,res,next)=>{
             let hashCpass = await bcrypt.hash(cpass,salt);
             req.body.cpass = hashCpass;
             req.body.pass = hashPass;
-            // console.log(req.body);
-            
-            // *creating new user but not saving in the database*
-            // const newUserId = await new newUser(req.body);
-
-            // console.log("new user print**");
-            // console.log(newUserId);
-
-            // const token = await newUserId.generateAuthToken();
-
-
-            // console.log("the given token is :***  "+token);
-            
-            
             newUser.create(req.body);
             return res.status(200).json({message:"Success in user creation, take time to verify it by the admin"});
         }
