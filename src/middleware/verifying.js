@@ -18,7 +18,6 @@ const verifying = async(req,res,next)=>{
 
         const verifyUser = await jwt.verify(token,process.env.SECRET_KEY_TOKEN)
         const user = await newUser.findOne({_id: verifyUser._id});
-
         // console.log(user);
         if(token === user.token){
             next();

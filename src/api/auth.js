@@ -55,7 +55,9 @@ router.post('/signUp',async(req,res,next)=>{
 
             // const token = await newUserId.generateAuthToken();
 
+
             // console.log("the given token is :***  "+token);
+            
             
             newUser.create(req.body);
             return res.status(200).json({message:"Success in user creation, take time to verify it by the admin"});
