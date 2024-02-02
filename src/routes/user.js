@@ -72,9 +72,10 @@ router.post("/VerifySignup",async(req,res)=>{
 
             if(statusCode === 200){  
                 // console.log("success in user creation, take time to verify it by the admin");
-                res.write("<h1>Success in user creation, take time to verify it by the admin</h1>")
-                res.write('<a href="/user">Login in</a>')
-                res.send();
+                // res.write("<h1>Success in user creation, take time to verify it by the admin</h1>")
+                // res.write('<a href="/user">Login in</a>')
+                // res.send();
+                res.redirect('/user')
             }
             else{
                 res.send(vall);

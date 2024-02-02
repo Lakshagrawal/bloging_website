@@ -2,16 +2,17 @@ const jwt = require("jsonwebtoken")
 // const cookieParser = require("cookie-parser")
 const newUser = require('../models/newUser');
 
-
 const verifying = async(req,res,next)=>{
     try{
         // console.log("hello ******");
-        const token = req.cookies.jwtoken;
+        const token = await req.cookies.jwtoken;
+
         if(!token){
-            res.write("<h1>Please Log In </h1>")
-            res.write('<a href="/user">Log in</a> <br> <br>')
-            res.write('<a href="/">See New blogs</a>')
-            return res.send();
+            // res.write("<h1>Please Log In </h1>")
+            // res.write('<a href="/user">Log in</a> <br> <br>')
+            // res.write('<a href="/">See New blogs</a>')
+            // return res.send();
+            return res.render("loginWarning")
             // return res.status(404).json({message:"Please Log In"})
         }
 

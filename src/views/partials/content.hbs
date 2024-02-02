@@ -104,5 +104,63 @@
         </div> <!-- end sidebar -->
 
     </div> <!-- end row -->
-
+<button type="button" class="btn btn-primary" id="prevPage" onclick="prev()">Prev</button>
+<button type="button" class="btn btn-primary" id="nextPage" onclick="next()">Next</button>
 </div> <!-- end content-wrap -->
+
+<script>
+    function next(){
+        
+
+        var query = window.location.search.substring(1); // Get the query string
+        var currentUrl = window.location.href
+        console.log(query)
+            var parameters = query.split('&'); // Split parameters into an array
+            var parameterValues = new Map();
+
+            for (var i = 0; i < parameters.length; i++) {
+                var pair = parameters[i].split('=');
+                var paramName = decodeURIComponent(pair[0]);
+                var paramValue = decodeURIComponent(pair[1]);
+                parameterValues[paramName] = paramValue;
+            }
+
+            console.log(parameterValues);
+            console.log(parameterValues.has("page"));
+            let pageNum = 1;
+            if(parameterValues["page"] != undefined){
+                pageNum = Number (parameterValues["page"]);
+            }
+            console.log("this is : ", pageNum);
+            console.log(typeof(pageNum));
+            window.location.href = `http://localhost:3000/?page=${++pageNum}`;
+
+    return true;
+    }
+    function prev(){
+        var query = window.location.search.substring(1); // Get the query string
+        var currentUrl = window.location.href
+        console.log(query)
+            var parameters = query.split('&'); // Split parameters into an array
+            var parameterValues = new Map();
+
+            for (var i = 0; i < parameters.length; i++) {
+                var pair = parameters[i].split('=');
+                var paramName = decodeURIComponent(pair[0]);
+                var paramValue = decodeURIComponent(pair[1]);
+                parameterValues[paramName] = paramValue;
+            }
+
+            console.log(parameterValues);
+            console.log(parameterValues.has("page"));
+            let pageNum = 1;
+            if(parameterValues["page"] != undefined){
+                pageNum = Number (parameterValues["page"]);
+            }
+            console.log("this is : ", pageNum);
+            console.log(typeof(pageNum));
+            window.location.href = `http://localhost:3000/?page=${--pageNum}`;
+
+    return true;
+    }
+</script>

@@ -38,7 +38,7 @@ router.post('/signUp',async(req,res,next)=>{
         }
         else{
             // dublicate is not allow
-            req.body.admin = 1;
+            req.body.admin = 1; // all can post there blog
             req.body.date = await new Date().toJSON();
             const salt= await bcrypt.genSalt();
             let hashPass = await bcrypt.hash(pass,salt);

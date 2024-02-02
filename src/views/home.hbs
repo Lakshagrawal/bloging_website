@@ -28,7 +28,7 @@
     <!-- favicons
     ================================================== -->  
     <link rel="manifest" href="site.webmanifest">
-
+    
 </head>
 
 <body id="top">
@@ -66,7 +66,7 @@
                     <li class="current"><a href="/">Home</a></li>
                     <li><a href="/user/postyourblog">Post Blog</a></li>	
                     <li><a href="/user">Log In</a></li>
-                    <li><a href="/user/registration">Sign In</a></li>
+                    <li><a href="/user/registration">Sign Up</a></li>
                     <li><a href="/user/logOut">Log Out</a></li>
                     
                 </ul> <!-- end #nav -->
@@ -83,13 +83,14 @@
     {{>content data=data text=text}}
 
 
-     {{>footer}}
+     {{>footer text=text}}
 
 
     <!-- Java Script
     ================================================== -->
     <script src="/static/js/jquery-3.2.1.min.js"></script>
     <script src="/static/js/main.js"></script>
+
 
 </body>
 

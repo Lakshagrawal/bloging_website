@@ -51,21 +51,19 @@ app.use('/api',auth);
 // })
 // let dbURL = "mongodb://localhost:27017/bloging";
 try{
-const dbURL = process.env.SERVER_DB_KEY;  
-console.log(dbURL);
-// const connectionParams = { 
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// };
+    const dbURL = process.env.SERVER_DB_KEY || "mongodb://localhost:27017/bloging";  
+    console.log(dbURL);
+    // const connectionParams = { 
+    //     useNewUrlParser: true,
+    //     useUnifiedTopology: true
+    // };
 
-mongoose.connect(dbURL).then(()=>{
-    console.log("db is connected succsesfully");
-}).catch((err)=>{
-    console.log(err);
-})
-}
-
-catch(err){
+    mongoose.connect(dbURL).then(()=>{
+        console.log("db is connected succsesfully");
+    }).catch((err)=>{
+        console.log(err);
+    })
+}catch(err){
     console.log(err);
 }
 
